@@ -1,16 +1,12 @@
 import youtube_dl
-from pathlib import Path
 import os
-from termcolor import colored
+
 
 # commands = sys.argv
 # """txt_file contains list of URLs to download"""
 # txt_file = commands[1]
 # """name of the folder you want to put downloaded songs"""
 # new_folder = commands[2]
-#
-#
-
 
 
 

@@ -1,13 +1,13 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
-from flask import Flask, render_template, session, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from dl_songs import download_mp3
 import re
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'hard to guess string'
+app.config['SECRET_KEY'] = '\xd2\xcfy\xeafq\x87\xb0\x8c\xb5\xc6 \xa8+T\xc9d\xcf\xf0\x88\xa8\xd1vZ'
 bootstrap = Bootstrap(app)
 
 
@@ -33,7 +33,9 @@ def index():
         return redirect(url_for('index'))
     return render_template('index_form.html', form=form, name=name)
 
-
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=8000, debug=True)
+    app.run()
