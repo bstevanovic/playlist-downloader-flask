@@ -7,7 +7,7 @@ from dl_songs import download_mp3
 import re
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'hard to guess string'
+app.config['SECRET_KEY'] = '\xd2\xcfy\xeafq\x87\xb0\x8c\xb5\xc6 \xa8+T\xc9d\xcf\xf0\x88\xa8\xd1vZ'
 bootstrap = Bootstrap(app)
 
 
