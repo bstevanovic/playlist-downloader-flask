@@ -1,5 +1,7 @@
+
 import youtube_dl
 import os
+import sys
 
 
 # commands = sys.argv
@@ -22,12 +24,24 @@ def create_path(new_folder):
 
 a_path = create_path("yt_songs")
 
+def os_platform():
+    platform = sys.platform
+    if 'win' in platform:
+        current_platform = 'win-platform/ffmpeg.exe'
+    elif platform == 'darwin':
+        current_platform = 'mac-platform/ffmpeg.exe'
+
+    return current_platform
+
+ffmpeg_path = os_platform()
+
 ydl_options = {
     'sleep_interval': 2,
     'format': 'bestaudio/best',
     'extract_info': True,
     'quiet': True,
     'outtmpl': f"{a_path}/%(title)s.%(ext)s",
+    'ffmpeg_location': ffmpeg_path,
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
