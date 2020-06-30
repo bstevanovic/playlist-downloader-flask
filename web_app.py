@@ -8,7 +8,7 @@ import re
 import os
 
 app = Flask(__name__)
-SECRET_KEY = os.urandom(32)
+SECRET_KEY = os.urandom(12).hex()
 app.config['SECRET_KEY'] = SECRET_KEY
 bootstrap = Bootstrap(app)
 
