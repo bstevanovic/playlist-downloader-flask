@@ -5,9 +5,11 @@ from flask import Flask, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from dl_songs import download_mp3
 import re
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '\xd2\xcfy\xeafq\x87\xb0\x8c\xb5\xc6 \xa8+T\xc9d\xcf\xf0\x88\xa8\xd1vZ'
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
 bootstrap = Bootstrap(app)
 
 
