@@ -30,6 +30,8 @@ def os_platform():
         current_platform = 'win-platform/ffmpeg.exe'
     elif platform == 'darwin':
         current_platform = 'mac-platform/ffmpeg.exe'
+    elif platform == 'linux':
+        current_platform = '/usr/bin/ffmpeg'
 
     return current_platform
 
