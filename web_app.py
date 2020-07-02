@@ -24,16 +24,17 @@ def index():
     regex = re.compile(r'https:\/\/www.youtube.com/watch\?v=[aA-zZ0-9_=\-&]+', re.IGNORECASE)
     form = NameForm()
     name = None
+    mess = 'You have completed download successfully!'
     if form.validate_on_submit():
         name = form.name.data
         url_list = name.split(',')
         if url_list and all([bool(regex.match(ur)) for ur in url_list]):
             download_mp3(url_list)
-            flash('You have completed download successfully!')
+            flash(mess)
         else:
             flash("You didn't enter a valid youtube url. Please try again!")
         return redirect(url_for('index'))
-    return render_template('index_form.html', form=form, name=name)
+    return render_template('index_form.html', form=form, name=name, mess=mess)
 
 @app.errorhandler(404)
 def page_not_found(e):

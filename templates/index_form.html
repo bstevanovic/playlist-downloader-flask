@@ -33,7 +33,7 @@ data-toggle="collapse" data-target=".navbar-collapse">
 
     <div class="container-fluid">
         {% for message in get_flashed_messages() %}
-        {% if message == 'You have completed download successfully!' %}
+        {% if message == mess %}
         <div class="alert alert-success" role="alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         {{ message }}
