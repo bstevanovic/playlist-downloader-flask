@@ -3,13 +3,6 @@ import os
 import sys
 
 
-# commands = sys.argv
-# """txt_file contains list of URLs to download"""
-# txt_file = commands[1]
-# """name of the folder you want to put downloaded songs"""
-# new_folder = commands[2]
-
-
 def create_path(new_folder):
     """Generates new folder where songs will be placed. If folder with specific name already exists, it will not
     create/overwrite new one """
@@ -24,6 +17,7 @@ a_path = create_path("yt_songs")
 
 
 def os_platform():
+    """Get information about platform and set path to the ffmpeg """
     platform = sys.platform
     if 'win' in platform:
         current_platform = 'win-platform/ffmpeg.exe'
@@ -62,7 +56,8 @@ titles = []
 
 
 def download_mp3(url_list):
-    """Download mp3 songs listed in file"""
+    """Download mp3 songs listed in file; convert list to sets; edd title and file size to the tiles list"""
+    url_list = set(url_list)
     for url in url_list:
         with youtube_dl.YoutubeDL(ydl_options) as ydl:
             info = ydl.extract_info(url, download=False)

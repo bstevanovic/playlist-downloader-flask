@@ -28,6 +28,7 @@ def index():
     if form.validate_on_submit():
         name = form.name.data
         url_list = name.split(',')
+        titles.clear()
         if url_list and all([bool(regex.match(ur)) for ur in url_list]):
             download_mp3(url_list)
             flash(mess)
