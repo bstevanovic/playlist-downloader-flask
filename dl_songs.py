@@ -1,4 +1,3 @@
-
 import youtube_dl
 import os
 import sys
@@ -9,7 +8,6 @@ import sys
 # txt_file = commands[1]
 # """name of the folder you want to put downloaded songs"""
 # new_folder = commands[2]
-
 
 
 def create_path(new_folder):
@@ -24,6 +22,7 @@ def create_path(new_folder):
 
 a_path = create_path("yt_songs")
 
+
 def os_platform():
     platform = sys.platform
     if 'win' in platform:
@@ -34,6 +33,7 @@ def os_platform():
         current_platform = '/usr/bin/ffmpeg'
 
     return current_platform
+
 
 ffmpeg_path = os_platform()
 
@@ -52,10 +52,13 @@ ydl_options = {
 }
 
 
-# def get_file_size(a_path, title):
-#     """Get information of the size of the mp3 file"""
-#     byteSize = os.stat(f'{a_path}/{title}.mp3').st_size
-#     return colored(f'The size of downloaded file is: {round(byteSize * 0.000001, 1)}MB', 'magenta')
+def get_file_size(a_path, title):
+    """Get information of the size of the mp3 file"""
+    byteSize = os.stat(f'{a_path}/{title}.mp3').st_size
+    return f'Size: {round(byteSize * 0.000001, 1)}MB'
+
+
+titles = []
 
 
 def download_mp3(url_list):
@@ -65,6 +68,8 @@ def download_mp3(url_list):
             info = ydl.extract_info(url, download=False)
             title = info['title']
             ydl.download([url])
+            size = get_file_size(a_path, title)
+            titles.append(f'{title} - {size}')
 
 
 if __name__ == '__main__':

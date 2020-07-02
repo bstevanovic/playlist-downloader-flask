@@ -3,7 +3,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
-from dl_songs import download_mp3
+from dl_songs import download_mp3, titles
 import re
 import os
 
@@ -34,15 +34,18 @@ def index():
         else:
             flash("You didn't enter a valid youtube url. Please try again!")
         return redirect(url_for('index'))
-    return render_template('index_form.html', form=form, name=name, mess=mess)
+    return render_template('index_form.html', form=form, name=name, mess=mess, titles=titles)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
+
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template('500.html'), 505
+
 
 if __name__ == '__main__':
     app.run()
